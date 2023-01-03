@@ -1082,7 +1082,7 @@ class EntrustUserTest extends PHPUnit_Framework_TestCase
         | Expectation
         |------------------------------------------------------------
         */
-        Config::shouldReceive('get')->with('entrust.role')->once()->andReturn('App\Role');
+        Config::shouldReceive('get')->with('entrust.role')->once()->andReturn('App\Models\Role');
         Config::shouldReceive('get')->with('entrust.role_user_table')->once()->andReturn('role_user');
         Config::shouldReceive('get')->with('entrust.user_foreign_key')->once()->andReturn('user_id');
         Config::shouldReceive('get')->with('entrust.role_foreign_key')->once()->andReturn('role_id');
