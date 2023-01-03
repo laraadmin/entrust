@@ -1,4 +1,4 @@
-# ENTRUST (Laravel 5 Package)
+# ENTRUST (Laravel 8/9 Package)
 
 [![Build Status](https://travis-ci.org/Zizaco/entrust.svg)](https://travis-ci.org/Zizaco/entrust)
 [![Version](https://img.shields.io/packagist/v/Zizaco/entrust.svg)](https://packagist.org/packages/zizaco/entrust)
@@ -14,45 +14,46 @@ contains the latest entrust version for Laravel 4.
 
 ## Contents
 
-- [Installation](#installation)
-- [Configuration](#configuration)
+- [ENTRUST (Laravel 8/9 Package)](#entrust-laravel-89-package)
+  - [Contents](#contents)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
     - [User relation to roles](#user-relation-to-roles)
     - [Models](#models)
-        - [Role](#role)
-        - [Permission](#permission)
-        - [User](#user)
-        - [Soft Deleting](#soft-deleting)
-- [Usage](#usage)
+      - [Role](#role)
+      - [Permission](#permission)
+      - [User](#user)
+      - [Soft Deleting](#soft-deleting)
+  - [Usage](#usage)
     - [Concepts](#concepts)
-        - [Checking for Roles & Permissions](#checking-for-roles--permissions)
-        - [User ability](#user-ability)
+      - [Checking for Roles \& Permissions](#checking-for-roles--permissions)
+      - [User ability](#user-ability)
     - [Blade templates](#blade-templates)
     - [Middleware](#middleware)
     - [Short syntax route filter](#short-syntax-route-filter)
     - [Route filter](#route-filter)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
-- [Contribution guidelines](#contribution-guidelines)
-- [Additional information](#additional-information)
+  - [Troubleshooting](#troubleshooting)
+  - [License](#license)
+  - [Contribution guidelines](#contribution-guidelines)
 
 ## Installation
 
 1) In order to install Laravel 5 Entrust, just add the following to your composer.json. Then run `composer update`:
 
 ```json
-"zizaco/entrust": "5.2.x-dev"
+"zizaco/entrust": "6.0"
 ```
 
 2) Open your `config/app.php` and add the following to the `providers` array:
 
 ```php
-Zizaco\Entrust\EntrustServiceProvider::class,
+Laraadmin\Entrust\EntrustServiceProvider::class,
 ```
 
 3) In the same `config/app.php` and add the following to the `aliases ` array: 
 
 ```php
-'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+'Entrust'   => Laraadmin\Entrust\EntrustFacade::class,
 ```
 
 4) Run the command below to publish the package config file `config/entrust.php`:
@@ -76,9 +77,9 @@ php artisan vendor:publish
 6)  If you want to use [Middleware](#middleware) (requires Laravel 5.1 or later) you also need to add the following:
 
 ```php
-    'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
-    'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
-    'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+    'role' => \Laraadmin\Entrust\Middleware\EntrustRole::class,
+    'permission' => \Laraadmin\Entrust\Middleware\EntrustPermission::class,
+    'ability' => \Laraadmin\Entrust\Middleware\EntrustAbility::class,
 ```
 
 to `routeMiddleware` array in `app/Http/Kernel.php`.
@@ -120,7 +121,7 @@ Create a Role model inside `app/models/Role.php` using the following example:
 ```php
 <?php namespace App;
 
-use Zizaco\Entrust\EntrustRole;
+use Laraadmin\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
@@ -141,7 +142,7 @@ Create a Permission model inside `app/models/Permission.php` using the following
 ```php
 <?php namespace App;
 
-use Zizaco\Entrust\EntrustPermission;
+use Laraadmin\Entrust\EntrustPermission;
 
 class Permission extends EntrustPermission
 {
@@ -162,7 +163,7 @@ Next, use the `EntrustUserTrait` trait in your existing `User` model. For exampl
 ```php
 <?php
 
-use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Laraadmin\Entrust\Traits\EntrustUserTrait;
 
 class User extends Eloquent
 {
