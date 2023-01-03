@@ -1,6 +1,6 @@
 {
     "name": "laraadmin/entrust",
-    "version": "6.0.2",
+    "version": "6.0.3",
     "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
     "keywords": ["laravel","illuminate","auth","roles","acl","permission"],
     "license": "MIT",
