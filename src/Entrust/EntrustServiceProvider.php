@@ -8,17 +8,11 @@
  * @package Laraadmin\Entrust
  */
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class EntrustServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
     /**
      * Bootstrap the application events.
      *
@@ -59,32 +53,32 @@ class EntrustServiceProvider extends ServiceProvider
      */
     private function bladeDirectives()
     {
-        if (!class_exists('\Blade')) return;
+        if (! $this->app->bound('blade.compiler')) return;
 
         // Call to Entrust::hasRole
-        \Blade::directive('role', function($expression) {
+        Blade::directive('role', function($expression) {
             return "<?php if (\\Entrust::hasRole({$expression})) : ?>";
         });
 
-        \Blade::directive('endrole', function($expression) {
+        Blade::directive('endrole', function($expression) {
             return "<?php endif; // Entrust::hasRole ?>";
         });
 
         // Call to Entrust::can
-        \Blade::directive('permission', function($expression) {
+        Blade::directive('permission', function($expression) {
             return "<?php if (\\Entrust::can({$expression})) : ?>";
         });
 
-        \Blade::directive('endpermission', function($expression) {
+        Blade::directive('endpermission', function($expression) {
             return "<?php endif; // Entrust::can ?>";
         });
 
         // Call to Entrust::ability
-        \Blade::directive('ability', function($expression) {
+        Blade::directive('ability', function($expression) {
             return "<?php if (\\Entrust::ability({$expression})) : ?>";
         });
 
-        \Blade::directive('endability', function($expression) {
+        Blade::directive('endability', function($expression) {
             return "<?php endif; // Entrust::ability ?>";
         });
     }

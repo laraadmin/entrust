@@ -8,12 +8,15 @@ use Illuminate\Support\Facades\Cache;
 use Laraadmin\Entrust\Permission;
 use Laraadmin\Entrust\Role;
 use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-class EntrustUserTest extends PHPUnit_Framework_TestCase
+class EntrustUserTest extends \PHPUnit\Framework\TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private $facadeMocks = array();
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -29,7 +32,7 @@ class EntrustUserTest extends PHPUnit_Framework_TestCase
         Cache::swap($this->facadeMocks['cache']);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }

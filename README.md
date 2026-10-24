@@ -1,4 +1,7 @@
-# ENTRUST (Laravel 8/9 Package)
+# ENTRUST (Laravel 12/13 Package)
+
+> **laraadmin/entrust 7.x** requires PHP 8.2+ and Laravel 12 or 13 (tested on PHP 8.4).
+> Use 6.x for Laravel 8.
 
 [![Build Status](https://travis-ci.org/Zizaco/entrust.svg)](https://travis-ci.org/Zizaco/entrust)
 [![Version](https://img.shields.io/packagist/v/Zizaco/entrust.svg)](https://packagist.org/packages/zizaco/entrust)
@@ -14,7 +17,7 @@ contains the latest entrust version for Laravel 4.
 
 ## Contents
 
-- [ENTRUST (Laravel 8/9 Package)](#entrust-laravel-89-package)
+- [ENTRUST (Laravel 12/13 Package)](#entrust-laravel-1213-package)
   - [Contents](#contents)
   - [Installation](#installation)
   - [Configuration](#configuration)
@@ -38,10 +41,15 @@ contains the latest entrust version for Laravel 4.
 
 ## Installation
 
-1) In order to install Laravel 5 Entrust, just add the following to your composer.json. Then run `composer update`:
+1) In order to install Entrust, add the repository and requirement to your composer.json. Then run `composer update`:
 
 ```json
-"zizaco/entrust": "6.0"
+"repositories": [
+    { "type": "vcs", "url": "https://github.com/laraadmin/entrust.git" }
+],
+"require": {
+    "laraadmin/entrust": "^7.0"
+}
 ```
 
 2) Open your `config/app.php` and add the following to the `providers` array:
@@ -82,7 +90,7 @@ php artisan vendor:publish
     'ability' => \Laraadmin\Entrust\Middleware\EntrustAbility::class,
 ```
 
-to `routeMiddleware` array in `app/Http/Kernel.php`.
+to the `$middlewareAliases` array in `app/Http/Kernel.php` (or `$middleware->alias([...])` in `bootstrap/app.php`).
 
 ## Configuration
 
