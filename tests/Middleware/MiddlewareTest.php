@@ -1,12 +1,15 @@
 <?php
 
 use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-abstract class MiddlewareTest extends PHPUnit_Framework_TestCase
+abstract class MiddlewareTest extends \PHPUnit\Framework\TestCase
 {
+	use MockeryPHPUnitIntegration;
+
 	public static $abortCode = null;
 
-	public static function setupBeforeClass()
+	public static function setUpBeforeClass(): void
 	{
 		if (! function_exists('abort')) {
 		    /**
@@ -29,7 +32,7 @@ abstract class MiddlewareTest extends PHPUnit_Framework_TestCase
 		}
 	}
 
-	public function tearDown()
+	protected function tearDown(): void
 	{
 		parent::tearDown();
 

@@ -18,3 +18,7 @@ Thumbs.db
 
 # sublime phpintel plugin
 /.phpintel
+
+/composer.lock
+.phpunit.cache
+.phpunit.result.cache

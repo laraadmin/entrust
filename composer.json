@@ -1,8 +1,15 @@
 {
     "name": "laraadmin/entrust",
-    "version": "6.0.3",
+    "version": "7.0.0",
     "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
-    "keywords": ["laravel","illuminate","auth","roles","acl","permission"],
+    "keywords": [
+        "laravel",
+        "illuminate",
+        "auth",
+        "roles",
+        "acl",
+        "permission"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -23,15 +30,15 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "illuminate/console": "~8.0",
-        "illuminate/support": "~8.0",
-        "illuminate/cache": "~8.0"
+        "php": "^8.2",
+        "illuminate/cache": "^12.0|^13.0",
+        "illuminate/console": "^12.0|^13.0",
+        "illuminate/database": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "9.5.x-dev",
-        "mockery/mockery": "^1.5",
-        "illuminate/database": "8.x-dev"
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^11.5|^12.0"
     },
     "autoload": {
         "classmap": [
@@ -41,12 +48,12 @@
             "Laraadmin\\Entrust\\": "src/Entrust/"
         }
     },
-    "extra":{
-        "laravel":{
-            "providers":[
+    "extra": {
+        "laravel": {
+            "providers": [
                 "Laraadmin\\Entrust\\EntrustServiceProvider"
             ],
-            "aliases":{
+            "aliases": {
                 "Entrust": "Laraadmin\\Entrust\\EntrustFacade"
             }
         }
@@ -56,5 +63,5 @@
             "tests/Middleware/MiddlewareTest.php"
         ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
