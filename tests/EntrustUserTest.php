@@ -947,6 +947,11 @@ class EntrustUserTest extends \PHPUnit\Framework\TestCase
         $user->shouldReceive('attach')
             ->with(3)
             ->once()->ordered();
+        // Each change clears the cached roles
+        Cache::shouldReceive('getStore')->times(3)->andReturn(new ArrayStore);
+        Config::shouldReceive('get')->times(3)->with('entrust.role_user_table')->andReturn('role_user');
+        Cache::shouldReceive('tags')->times(3)->with('role_user')->andReturn($tagged = m::mock('tagged'));
+        $tagged->shouldReceive('flush')->times(3);
 
         /*
         |------------------------------------------------------------
@@ -989,6 +994,11 @@ class EntrustUserTest extends \PHPUnit\Framework\TestCase
         $user->shouldReceive('detach')
             ->with(3)
             ->once()->ordered();
+        // Each change clears the cached roles
+        Cache::shouldReceive('getStore')->times(3)->andReturn(new ArrayStore);
+        Config::shouldReceive('get')->times(3)->with('entrust.role_user_table')->andReturn('role_user');
+        Cache::shouldReceive('tags')->times(3)->with('role_user')->andReturn($tagged = m::mock('tagged'));
+        $tagged->shouldReceive('flush')->times(3);
 
 
         /*

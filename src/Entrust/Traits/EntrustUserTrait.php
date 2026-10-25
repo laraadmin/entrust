@@ -259,6 +259,7 @@ trait EntrustUserTrait
         }
 
         $this->roles()->attach($role);
+        $this->flushCachedRoles();
     }
 
     /**
@@ -277,6 +278,19 @@ trait EntrustUserTrait
         }
 
         $this->roles()->detach($role);
+        $this->flushCachedRoles();
+    }
+
+    /**
+     * Clear the cached roles of users (taggable cache stores only), so role changes apply at once.
+     *
+     * @return void
+     */
+    protected function flushCachedRoles()
+    {
+        if (Cache::getStore() instanceof TaggableStore) {
+            Cache::tags(Config::get('entrust.role_user_table'))->flush();
+        }
     }
 
     /**
