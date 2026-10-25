@@ -1,6 +1,6 @@
 {
     "name": "laraadmin/entrust",
-    "version": "7.0.0",
+    "version": "7.0.1",
     "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
     "keywords": [
         "laravel",

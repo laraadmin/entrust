@@ -175,6 +175,7 @@ trait EntrustRoleTrait
         }
 
         $this->perms()->attach($permission);
+        $this->flushCachedPermissions();
     }
 
     /**
@@ -195,6 +196,19 @@ trait EntrustRoleTrait
         }
 
         $this->perms()->detach($permission);
+        $this->flushCachedPermissions();
+    }
+
+    /**
+     * Clear the cached permissions of roles (taggable cache stores only), so permission changes apply at once.
+     *
+     * @return void
+     */
+    protected function flushCachedPermissions()
+    {
+        if (Cache::getStore() instanceof TaggableStore) {
+            Cache::tags(Config::get('entrust.permission_role_table'))->flush();
+        }
     }
 
     /**
